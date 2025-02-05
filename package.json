@@ -1,0 +1,27 @@
+{
+  "name": "express-setup",
+  "version": "1.0.0",
+  "description": "NodeJs(express) project setup",
+  "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shyamtala003/node-express-setup.git"
+  },
+  "keywords": [
+    "node-setup",
+    "express-setup",
+    "best",
+    "project-setup",
+    "node-23"
+  ],
+  "author": "shyam tala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shyamtala003/node-express-setup/issues"
+  },
+  "homepage": "https://github.com/shyamtala003/node-express-setup#readme"
+}
