@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "NodeJs(express) project setup",
   "main": "index.js",
+  "type": "module",
   "engines": {
     "node": "22"
   },
-  "scripts": {},
+  "scripts": {
+    "dev": "node --watch --env-file=.env.dev index.js",
+    "staging": "node --watch --env-file=.env.staging index.js",
+    "production": "node  --env-file=.env index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shyamtala003/node-express-setup.git"
@@ -23,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/shyamtala003/node-express-setup/issues"
   },
-  "homepage": "https://github.com/shyamtala003/node-express-setup#readme"
+  "homepage": "https://github.com/shyamtala003/node-express-setup#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
