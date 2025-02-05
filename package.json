@@ -8,7 +8,7 @@
     "node": "22"
   },
   "scripts": {
-    "dev": "node --watch --env-file=.env.dev index.js",
+    "dev": " prettier --write . && node --watch --env-file=.env.dev index.js",
     "staging": "node --watch --env-file=.env.staging index.js",
     "production": "node  --env-file=.env index.js"
   },
@@ -31,5 +31,8 @@
   "homepage": "https://github.com/shyamtala003/node-express-setup#readme",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
   }
 }
