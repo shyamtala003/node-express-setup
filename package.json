@@ -8,9 +8,9 @@
     "node": "22"
   },
   "scripts": {
-    "dev": " prettier --write . && node --watch --env-file=.env.dev index.js",
-    "staging": "node --watch --env-file=.env.staging index.js",
-    "production": "node  --env-file=.env index.js"
+    "dev": " prettier --write . && node --watch --env-file=.env.dev ./src/index.js",
+    "staging": "node --watch --env-file=.env.staging src/index.js",
+    "production": "node  --env-file=.env src/index.js"
   },
   "repository": {
     "type": "git",
