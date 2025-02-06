@@ -14,9 +14,9 @@
  */
 export default function cors(options = {}) {
   const defaults = {
-    origin: "*",
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
-    headers: "*",
+    origin: '*',
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    headers: '*',
     credentials: false,
   };
 
@@ -24,21 +24,21 @@ export default function cors(options = {}) {
   const typeOfOrigin = typeof settings.origin;
 
   // Ensure methods are always an array
-  if (typeof settings.methods === "string") {
+  if (typeof settings.methods === 'string') {
     settings.methods = settings.methods
-      .split(",")
+      .split(',')
       .map((m) => m.trim().toUpperCase());
   }
 
   // Validate methods array
   const validMethods = [
-    "GET",
-    "HEAD",
-    "PUT",
-    "PATCH",
-    "POST",
-    "DELETE",
-    "OPTIONS",
+    'GET',
+    'HEAD',
+    'PUT',
+    'PATCH',
+    'POST',
+    'DELETE',
+    'OPTIONS',
   ];
   settings.methods = settings.methods.filter((method) =>
     validMethods.includes(method.toUpperCase())
@@ -48,37 +48,37 @@ export default function cors(options = {}) {
     const requestOrigin = req.headers.origin;
 
     // Set allowed origin
-    if (typeOfOrigin === "string") {
-      res.setHeader("Access-Control-Allow-Origin", settings.origin);
+    if (typeOfOrigin === 'string') {
+      res.setHeader('Access-Control-Allow-Origin', settings.origin);
     }
 
     if (Array.isArray(settings.origin)) {
       if (settings.origin.includes(requestOrigin)) {
-        res.setHeader("Access-Control-Allow-Origin", requestOrigin);
+        res.setHeader('Access-Control-Allow-Origin', requestOrigin);
       }
     }
 
     // Restrict methods if needed (but never block OPTIONS)
     if (settings.methods && settings.methods.length) {
-      const allowedMethods = settings.methods.join(", ");
-      res.setHeader("Access-Control-Allow-Methods", allowedMethods);
+      const allowedMethods = settings.methods.join(', ');
+      res.setHeader('Access-Control-Allow-Methods', allowedMethods);
 
       // If the requested method is not in the allowed methods (and not OPTIONS), block it
-      if (req.method !== "OPTIONS" && !settings.methods.includes(req.method)) {
+      if (req.method !== 'OPTIONS' && !settings.methods.includes(req.method)) {
         return res.status(405).send(`Method ${req.method} Not Allowed`);
       }
     }
 
     // Set allowed headers
-    res.setHeader("Access-Control-Allow-Headers", settings.headers);
+    res.setHeader('Access-Control-Allow-Headers', settings.headers);
 
     // Handle credentials
     if (settings.credentials) {
-      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
     }
 
     // Handle preflight requests (OPTIONS method)
-    if (req.method === "OPTIONS") {
+    if (req.method === 'OPTIONS') {
       return res.sendStatus(204);
     }
 

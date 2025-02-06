@@ -1,22 +1,22 @@
 // logger.js
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
 const colors = {
-  reset: "\x1b[0m",
+  reset: '\x1b[0m',
 
   // Text colors
-  green: "\x1b[38;2;128;255;128m",
-  yellow: "\x1b[38;2;255;227;57m",
-  blue: "\x1b[38;2;128;255;255m",
-  red: "\x1b[1;38;2;255;128;128m",
+  green: '\x1b[38;2;128;255;128m',
+  yellow: '\x1b[38;2;255;227;57m',
+  blue: '\x1b[38;2;128;255;255m',
+  red: '\x1b[1;38;2;255;128;128m',
 };
 
-const logFilePath = path.join(process.cwd(), "app.log");
+const logFilePath = path.join(process.cwd(), 'app.log');
 
 const formatArgs = (args) =>
   args.map((arg) => {
-    return typeof arg === "object" ? `\n${JSON.stringify(arg, null, 2)}` : arg;
+    return typeof arg === 'object' ? `\n${JSON.stringify(arg, null, 2)}` : arg;
   });
 
 const writeToLogFile = (level, message) => {
@@ -32,24 +32,24 @@ const writeToLogFile = (level, message) => {
 
 const logger = {
   log: (...args) => {
-    const message = formatArgs(args).join(" ");
+    const message = formatArgs(args).join(' ');
     console.log(`${colors.green}[LOG]  `, ...formatArgs(args));
-    writeToLogFile("LOG", message);
+    writeToLogFile('LOG', message);
   },
   info: (...args) => {
-    const message = formatArgs(args).join(" ");
+    const message = formatArgs(args).join(' ');
     console.info(`${colors.blue}[INFO] `, ...formatArgs(args));
-    writeToLogFile("INFO", message);
+    writeToLogFile('INFO', message);
   },
   warn: (...args) => {
-    const message = formatArgs(args).join(" ");
+    const message = formatArgs(args).join(' ');
     console.warn(`${colors.yellow}[WARN] `, ...formatArgs(args));
-    writeToLogFile("WARN", message);
+    writeToLogFile('WARN', message);
   },
   error: (...args) => {
-    const message = formatArgs(args).join(" ");
+    const message = formatArgs(args).join(' ');
     console.error(`${colors.red}[ERROR]`, ...formatArgs(args));
-    writeToLogFile("ERROR", message);
+    writeToLogFile('ERROR', message);
   },
 };
 

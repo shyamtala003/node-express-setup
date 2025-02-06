@@ -1,8 +1,8 @@
 import express from 'express';
-import { PORT } from './configs/environment.js';
-import logger from './utils/logger.js';
-import cors from './middleware/cors.js';
-import requestLogger from './middleware/requestLogger.js';
+import { PORT } from './src/configs/environment.js';
+import cors from './src/middleware/cors.js';
+import requestLogger from './src/middleware/requestLogger.js';
+import logger from './src/utils/logger.js';
 
 const app = express();
 
