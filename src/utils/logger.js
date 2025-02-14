@@ -1,11 +1,8 @@
-// logger.js
 import fs from 'fs';
 import path from 'path';
 
 const colors = {
   reset: '\x1b[0m',
-
-  // Text colors
   green: '\x1b[38;2;128;255;128m',
   yellow: '\x1b[38;2;255;227;57m',
   blue: '\x1b[38;2;128;255;255m',
@@ -13,13 +10,16 @@ const colors = {
 };
 
 const logFilePath = path.join(process.cwd(), 'app.log');
+let enableFileLogging = true;
 
 const formatArgs = (args) =>
-  args.map((arg) => {
-    return typeof arg === 'object' ? `\n${JSON.stringify(arg, null, 2)}` : arg;
-  });
+  args.map((arg) =>
+    typeof arg === 'object' ? `\n${JSON.stringify(arg, null, 2)}` : arg
+  );
 
 const writeToLogFile = (level, message) => {
+  if (!enableFileLogging) return;
+
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] [${level}] ${message}\n`;
 
@@ -50,6 +50,12 @@ const logger = {
     const message = formatArgs(args).join(' ');
     console.error(`${colors.red}[ERROR]`, ...formatArgs(args));
     writeToLogFile('ERROR', message);
+  },
+
+  setConfig: ({ enableFileLogging: loggingEnabled }) => {
+    if (typeof loggingEnabled === 'boolean') {
+      enableFileLogging = loggingEnabled;
+    }
   },
 };
 

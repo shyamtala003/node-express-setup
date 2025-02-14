@@ -9,6 +9,7 @@ const requestLogger = (options = {}) => {
     logDuration = true,
     logMethod = true,
     logPath = true,
+    trackLogInLogFile = true,
     logIP = false,
     logUserAgent = false,
   } = options;
@@ -49,15 +50,17 @@ const requestLogger = (options = {}) => {
       logMessage += '- Incoming request';
       console.log(logMessage);
 
-      const fileLogMsg = `${req.method} ${req.originalUrl} - Incoming request\n`;
-      fs.appendFile(logFilePath, fileLogMsg, (err) => {
-        if (err) {
-          console.error(
-            `${colors.red}[ERROR] Failed to write to log file:`,
-            err
-          );
-        }
-      });
+      if (trackLogInLogFile) {
+        const fileLogMsg = `${req.method} ${req.originalUrl} - Incoming request\n`;
+        fs.appendFile(logFilePath, fileLogMsg, (err) => {
+          if (err) {
+            console.error(
+              `${colors.red}[ERROR] Failed to write to log file:`,
+              err
+            );
+          }
+        });
+      }
     }
 
     // Log status and duration on response finish
@@ -84,15 +87,17 @@ const requestLogger = (options = {}) => {
 
       console.log(logMessage);
 
-      const fileLogMsg = `${req.method} ${req.originalUrl} - Status: ${res.statusCode} - Took: ${(duration / 1000).toFixed(3)} seconds\n`;
-      fs.appendFile(logFilePath, fileLogMsg, (err) => {
-        if (err) {
-          console.error(
-            `${colors.red}[ERROR] Failed to write to log file:`,
-            err
-          );
-        }
-      });
+      if (trackLogInLogFile) {
+        const fileLogMsg = `${req.method} ${req.originalUrl} - Status: ${res.statusCode} - Took: ${(duration / 1000).toFixed(3)} seconds\n`;
+        fs.appendFile(logFilePath, fileLogMsg, (err) => {
+          if (err) {
+            console.error(
+              `${colors.red}[ERROR] Failed to write to log file:`,
+              err
+            );
+          }
+        });
+      }
     });
 
     next();
