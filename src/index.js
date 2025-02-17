@@ -1,7 +1,7 @@
 import express from 'express';
 import { PORT } from './configs/environment.js';
-import cors from './middleware/cors.js';
-import requestLogger from './middleware/requestLogger.js';
+import cors from './middlewares/cors.js';
+import requestLogger from './middlewares/requestLogger.js';
 import logger from './utils/logger.js';
 import connectioToDB from './configs/dbConnection.js';
 
