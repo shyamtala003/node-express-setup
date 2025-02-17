@@ -17,11 +17,23 @@ const formatArgs = (args) =>
     typeof arg === 'object' ? `\n${JSON.stringify(arg, null, 2)}` : arg
   );
 
-const writeToLogFile = (level, message) => {
+// Function to get the filename of the caller
+const getCallerFile = () => {
+  const stack = new Error().stack.split('\n');
+  const callerLine = stack[3] || ''; // Adjust index based on V8 stack trace format
+  const match = callerLine.match(/\((.*):(\d+):(\d+)\)$/);
+
+  if (match) {
+    return path.basename(match[1]); // Extract just the filename
+  }
+  return 'unknown';
+};
+
+const writeToLogFile = (level, message, filename) => {
   if (!enableFileLogging) return;
 
   const timestamp = new Date().toISOString();
-  const logMessage = `[${timestamp}] [${level}] ${message}\n`;
+  const logMessage = `[${timestamp}] [${level}] [${filename}] ${message}\n`;
 
   fs.appendFile(logFilePath, logMessage, (err) => {
     if (err) {
@@ -32,24 +44,34 @@ const writeToLogFile = (level, message) => {
 
 const logger = {
   log: (...args) => {
+    const filename = getCallerFile();
     const message = formatArgs(args).join(' ');
-    console.log(`${colors.green}[LOG]  `, ...formatArgs(args));
-    writeToLogFile('LOG', message);
+    console.log(`${colors.green}[LOG] [${filename}]`, ...formatArgs(args));
+    writeToLogFile('LOG', message, filename);
   },
   info: (...args) => {
+    const filename = getCallerFile();
     const message = formatArgs(args).join(' ');
-    console.info(`${colors.blue}[INFO] `, ...formatArgs(args));
-    writeToLogFile('INFO', message);
+    console.info(`${colors.blue}[INFO] [${filename}]`, ...formatArgs(args));
+    writeToLogFile('INFO', message, filename);
   },
   warn: (...args) => {
+    const filename = getCallerFile();
     const message = formatArgs(args).join(' ');
-    console.warn(`${colors.yellow}[WARN] `, ...formatArgs(args));
-    writeToLogFile('WARN', message);
+    console.warn(`${colors.yellow}[WARN] [${filename}]`, ...formatArgs(args));
+    writeToLogFile('WARN', message, filename);
   },
   error: (...args) => {
-    const message = formatArgs(args).join(' ');
-    console.error(`${colors.red}[ERROR]`, ...formatArgs(args));
-    writeToLogFile('ERROR', message);
+    const filename = getCallerFile();
+    let formattedArgs = args.map((arg) => {
+      if (arg instanceof Error) {
+        return `[${arg.name}] ${arg.message}\nStack: ${arg.stack}`;
+      }
+      return formatArgs([arg]).join(' ');
+    });
+    const message = formattedArgs.join(' ');
+    console.error(`${colors.red}[ERROR] [${filename}]`, message);
+    writeToLogFile('ERROR', message, filename);
   },
 
   setConfig: ({ enableFileLogging: loggingEnabled }) => {
