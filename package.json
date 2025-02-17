@@ -30,7 +30,8 @@
   },
   "homepage": "https://github.com/shyamtala003/node-express-setup#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1"
   },
   "devDependencies": {
     "prettier": "^3.4.2"

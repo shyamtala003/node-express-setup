@@ -3,6 +3,7 @@ import { PORT } from './configs/environment.js';
 import cors from './middleware/cors.js';
 import requestLogger from './middleware/requestLogger.js';
 import logger from './utils/logger.js';
+import connectioToDB from './configs/dbConnection.js';
 
 const app = express();
 
@@ -15,8 +16,9 @@ app.get('/', (req, res) => {
   return res.json({ message: 'Hello', success: true });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   logger.log(`🎸 server is listening on port ${PORT} 🚀`);
+  await connectioToDB();
 });
 
 export default app;
