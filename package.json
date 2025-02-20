@@ -8,10 +8,18 @@
     "node": "22"
   },
   "scripts": {
-    "dev": " prettier --write . && node --watch --env-file=.env.dev ./src/index.js",
+    "dev": "prettier --write . && node --watch --env-file=.env.dev ./src/index.js",
     "staging": "node --watch --env-file=.env.staging src/index.js",
-    "production": "node  --env-file=.env src/index.js",
-    "lint": "eslint --config eslint.config.cjs ."
+    "production": "node --env-file=.env src/index.js",
+    "lint": "eslint --config eslint.config.cjs .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -42,6 +50,8 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.1"
+    "prettier": "^3.5.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3"
   }
 }

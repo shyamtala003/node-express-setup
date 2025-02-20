@@ -1,6 +1,6 @@
 # Node Express Setup
 
-This project is a basic setup for a Node.js application using Express. It includes configurations for different environments and code formatting tools and about how to overcome usage of unwanted dependencies by thinking how the things works under the wood.
+This project is a basic setup for a Node.js application using Express. It includes configurations for different environments and code formatting tools and about how to overcome usage of unwanted dependencies by thinking how the things work under the hood.
 
 ## Project Structure
 
@@ -61,6 +61,51 @@ This project is a basic setup for a Node.js application using Express. It includ
 ## DevDependencies
 
 - `prettier`: Code formatter.
+- `eslint`: Linting tool for JavaScript.
+- `husky`: Git hooks for automating workflows.
+- `lint-staged`: Runs linters on staged Git files.
+
+## Husky and Lint-Staged Configuration
+
+This project uses **Husky** and **lint-staged** to automate code quality checks and formatting before committing code to Git. Here's how it works:
+
+### Husky
+
+Husky is a tool that allows you to easily add Git hooks to your project. In this project, Husky is configured to run `lint-staged` before every commit.
+
+#### Setup
+
+1. Husky is initialized using the `prepare` script in `package.json`:
+   ```json
+   "scripts": {
+     "prepare": "husky install"
+   }
+   ```
+2. A `pre-commit` Git hook is added to the `.husky` directory. This hook runs `lint-staged` before every commit.
+
+### Lint-Staged
+
+Lint-staged runs linters and formatters only on the files that are staged for commit. This ensures that only the relevant files are checked, improving performance.
+
+#### Configuration
+
+The `lint-staged` configuration in `package.json` looks like this:
+
+```json
+"lint-staged": {
+  "*.js": [
+    "eslint --fix", // Fix ESLint issues in staged files
+    "prettier --write", // Format staged files with Prettier
+    "git add" // Add the fixed files to the commit
+  ]
+}
+```
+
+#### Workflow
+
+1. When you run `git commit`, Husky triggers the `pre-commit` hook.
+2. `lint-staged` runs ESLint and Prettier on all staged `.js` files.
+3. Any fixes or formatting changes are automatically added to the commit.
 
 ## Package Usage Prevention
 
@@ -115,7 +160,7 @@ By avoiding these packages, we aim to reduce the number of external dependencies
 
 ## Author
 
-- Shyam Tala
+- [Shyam Tala](https://shyamtala.vercel.app/)
 
 ## License
 
