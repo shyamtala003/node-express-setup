@@ -23,8 +23,8 @@ export default async function createAccount(req, res) {
       profile: {
         firstName,
         lastName,
-        avatar,
-      },
+        avatar
+      }
     });
 
     const userObject = user.toObject();

@@ -6,14 +6,14 @@ const colors = {
   green: '\x1b[38;2;128;255;128m',
   yellow: '\x1b[38;2;255;227;57m',
   blue: '\x1b[38;2;128;255;255m',
-  red: '\x1b[1;38;2;255;128;128m',
+  red: '\x1b[1;38;2;255;128;128m'
 };
 
 const logFilePath = path.join(process.cwd(), 'app.log');
 let enableFileLogging = true;
 
-const formatArgs = (args) =>
-  args.map((arg) =>
+const formatArgs = args =>
+  args.map(arg =>
     typeof arg === 'object' ? `\n${JSON.stringify(arg, null, 2)}` : arg
   );
 
@@ -35,7 +35,7 @@ const writeToLogFile = (level, message, filename) => {
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] [${level}] [${filename}] ${message}\n`;
 
-  fs.appendFile(logFilePath, logMessage, (err) => {
+  fs.appendFile(logFilePath, logMessage, err => {
     if (err) {
       console.error(`${colors.red}[ERROR] Failed to write to log file:`, err);
     }
@@ -63,7 +63,7 @@ const logger = {
   },
   error: (...args) => {
     const filename = getCallerFile();
-    let formattedArgs = args.map((arg) => {
+    let formattedArgs = args.map(arg => {
       if (arg instanceof Error) {
         return `[${arg.name}] ${arg.message}\nStack: ${arg.stack}`;
       }
@@ -78,7 +78,7 @@ const logger = {
     if (typeof loggingEnabled === 'boolean') {
       enableFileLogging = loggingEnabled;
     }
-  },
+  }
 };
 
 export default logger;

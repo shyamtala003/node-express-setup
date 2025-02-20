@@ -17,7 +17,7 @@ export default function cors(options = {}) {
     origin: '*',
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
     headers: '*',
-    credentials: false,
+    credentials: false
   };
 
   const settings = { ...defaults, ...options };
@@ -27,7 +27,7 @@ export default function cors(options = {}) {
   if (typeof settings.methods === 'string') {
     settings.methods = settings.methods
       .split(',')
-      .map((m) => m.trim().toUpperCase());
+      .map(m => m.trim().toUpperCase());
   }
 
   // Validate methods array
@@ -38,9 +38,9 @@ export default function cors(options = {}) {
     'PATCH',
     'POST',
     'DELETE',
-    'OPTIONS',
+    'OPTIONS'
   ];
-  settings.methods = settings.methods.filter((method) =>
+  settings.methods = settings.methods.filter(method =>
     validMethods.includes(method.toUpperCase())
   );
 

@@ -21,7 +21,7 @@ export default async function login(req, res) {
     const accessToken = generateToken({ id: user._id });
 
     setCookie(res, 'refreshToken', refreshToken, {
-      maxAge: 365 * 24 * 60 * 60 * 1000,
+      maxAge: 365 * 24 * 60 * 60 * 1000
     });
     setCookie(res, 'accessToken', accessToken, { maxAge: 15 * 60 * 1000 });
 

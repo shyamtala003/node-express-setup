@@ -11,14 +11,14 @@ const requestLogger = (options = {}) => {
     logPath = true,
     trackLogInLogFile = true,
     logIP = false,
-    logUserAgent = false,
+    logUserAgent = false
   } = options;
 
   return (req, res, next) => {
     const start = Date.now();
 
     // Function to determine the IP address
-    const getClientIP = (req) => {
+    const getClientIP = req => {
       const forwarded = req.headers['x-forwarded-for'];
       return forwarded
         ? forwarded.split(',')[0].trim()
@@ -52,12 +52,9 @@ const requestLogger = (options = {}) => {
 
       if (trackLogInLogFile) {
         const fileLogMsg = `${req.method} ${req.originalUrl} - Incoming request\n`;
-        fs.appendFile(logFilePath, fileLogMsg, (err) => {
+        fs.appendFile(logFilePath, fileLogMsg, err => {
           if (err) {
-            console.error(
-              `${colors.red}[ERROR] Failed to write to log file:`,
-              err
-            );
+            console.error(`[ERROR] Failed to write to log file:`, err);
           }
         });
       }
@@ -89,12 +86,9 @@ const requestLogger = (options = {}) => {
 
       if (trackLogInLogFile) {
         const fileLogMsg = `${req.method} ${req.originalUrl} - Status: ${res.statusCode} - Took: ${(duration / 1000).toFixed(3)} seconds\n`;
-        fs.appendFile(logFilePath, fileLogMsg, (err) => {
+        fs.appendFile(logFilePath, fileLogMsg, err => {
           if (err) {
-            console.error(
-              `${colors.red}[ERROR] Failed to write to log file:`,
-              err
-            );
+            console.error(`[ERROR] Failed to write to log file:`, err);
           }
         });
       }

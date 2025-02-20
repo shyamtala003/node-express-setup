@@ -7,13 +7,13 @@ export default function generateToken(payload, tokenType = 'accessToken') {
       accessToken: {
         secret: process.env.JWT_ACCESS_TOKEN_SECRET,
         signOptions: {
-          expiresIn: '15m',
-        },
+          expiresIn: '15m'
+        }
       },
       refreshToken: {
         secret: process.env.JWT_REFRESH_TOKEN_SECRET,
-        signOptions: {},
-      },
+        signOptions: {}
+      }
     };
 
     // Select options based on token type

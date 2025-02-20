@@ -11,7 +11,7 @@ const accountSchema = Schema(
       unique: true,
       trim: true,
       minlength: [3, 'Username must be at least 3 characters long'],
-      maxlength: [30, 'Username cannot exceed 30 characters'],
+      maxlength: [30, 'Username cannot exceed 30 characters']
     },
     email: {
       type: String,
@@ -19,31 +19,31 @@ const accountSchema = Schema(
       unique: [true, 'Account already exists with this email'],
       trim: true,
       lowercase: true,
-      validate: [validator.isEmail, 'Please provide a valid email address'],
+      validate: [validator.isEmail, 'Please provide a valid email address']
     },
     password: {
       type: String,
       required: [true, 'Password is required'],
       minlength: [8, 'Password must be at least 8 characters long'],
-      select: false,
+      select: false
     },
     isActive: {
       type: Boolean,
-      default: true,
+      default: true
     },
     profile: {
       firstName: {
         type: String,
-        trim: true,
+        trim: true
       },
       lastName: {
         type: String,
-        trim: true,
+        trim: true
       },
       avatar: {
-        type: String,
-      },
-    },
+        type: String
+      }
+    }
   },
   defaultSchemaConfig
 );
