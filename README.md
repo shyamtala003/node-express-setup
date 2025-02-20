@@ -20,6 +20,7 @@ node-express-setup/
 - `dev`: Runs the application in development mode with Prettier formatting.
 - `staging`: Runs the application in staging mode.
 - `production`: Runs the application in production mode.
+- `lint`: Runs ESLint to check for code quality issues.
 
 ## Environment Variables
 
@@ -70,8 +71,14 @@ By avoiding these packages, we aim to reduce the number of external dependencies
    ```
 
 4. Run the application in production mode:
+
    ```sh
    npm run production
+   ```
+
+5. Run ESLint to check for code quality issues:
+   ```sh
+   npm run lint
    ```
 
 ## Repository
