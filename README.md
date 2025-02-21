@@ -8,9 +8,9 @@ This project is a basic setup for a Node.js application using Express. It includ
 └── 📁node-setup(project name)
     └── 📁src
         └── 📁configs
-            └── dbConnection.js
-            └── environment.js
-            └── mongooseSchemaConfig.js
+            └── dbConnection.config.js
+            └── environment.config.js
+            └── mongooseSchema.config.js
         └── index.js
         └── 📁lib
             └── 📁accounts
@@ -20,12 +20,12 @@ This project is a basic setup for a Node.js application using Express. It includ
                     └── createAccount.controller.js
                     └── login.controller.js
         └── 📁middlewares
-            └── cookieParser.js
-            └── cors.js
-            └── requestLogger.js
+            └── cookieParser.middleware.js
+            └── cors.middleware.js
+            └── requestLogger.middleware.js
         └── router.js
         └── 📁utils
-            └── generateToken.js
+            └── generateToken.util.js
             └── logger.util.js
             └── sendResponse.util.js
             └── setCookie.util.js
