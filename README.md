@@ -123,6 +123,32 @@ In this project, we have chosen not to use certain packages such as `morgan`, `c
 
 By avoiding these packages, we aim to reduce the number of external dependencies, improve performance, and have more control over the application's behavior.
 
+## Slack Notification
+
+This project includes a utility for sending notifications to Slack channels. The `sendSlackNotification` utility allows you to send different types of messages (log, info, warn, error) to a specified Slack channel.
+
+### Usage
+
+To use the `sendSlackNotification` utility, import it and call the function with the appropriate parameters:
+
+```javascript
+import sendSlackNotification from './utils/sendSlackNotification.util.js';
+
+sendSlackNotification({
+  type: 'info',
+  title: 'Server Status',
+  message: `Server is listening on port ${PORT}`,
+  channel: 'general'
+});
+```
+
+### Configuration
+
+The `sendSlackNotification` utility is configured using environment variables:
+
+- `SLACK_BOT_TOKEN`: The token for the Slack bot.
+- `SLACK_CHANNEL_ID`: The default Slack channel ID.
+
 ## Usage
 
 1. Install dependencies:
