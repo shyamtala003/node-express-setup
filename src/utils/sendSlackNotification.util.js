@@ -1,6 +1,9 @@
 import { WebClient } from '@slack/web-api';
-import logger from './logger.js';
-import { SLACK_BOT_TOKEN, SLACK_CHANNEL_ID } from '../configs/environment.js';
+import logger from './logger.util.js';
+import {
+  SLACK_BOT_TOKEN,
+  SLACK_CHANNEL_ID
+} from '../configs/environment.config.js';
 
 const slackClient = new WebClient(SLACK_BOT_TOKEN);
 

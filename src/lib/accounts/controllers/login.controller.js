@@ -1,6 +1,6 @@
-import generateToken from '../../../utils/generateToken.js';
-import SendResponse from '../../../utils/sendResponse.js';
-import setCookie from '../../../utils/setCookie.js';
+import generateToken from '../../../utils/generateToken.util.js';
+import SendResponse from '../../../utils/sendResponse.util.js';
+import setCookie from '../../../utils/setCookie.util.js';
 import account from '../accounts.model.js';
 
 export default async function login(req, res) {

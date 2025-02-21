@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import validator from 'validator';
-import defaultSchemaConfig from '../../configs/mongooseSchemaConfig.js';
+import defaultSchemaConfig from '../../configs/mongooseSchema.config.js';
 
 const accountSchema = Schema(
   {

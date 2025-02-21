@@ -26,9 +26,11 @@ This project is a basic setup for a Node.js application using Express. It includ
         └── router.js
         └── 📁utils
             └── generateToken.js
-            └── logger.js
-            └── sendResponse.js
-            └── setCookie.js
+            └── logger.util.js
+            └── sendResponse.util.js
+            └── setCookie.util.js
+            └── setCookie.util.js
+            └── sendSlackNotification.util.js
     └── .env
     └── .env.dev
     └── .env.staging
