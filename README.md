@@ -111,7 +111,7 @@ The `lint-staged` configuration in `package.json` looks like this:
 
 ## Package Usage Prevention
 
-In this project, we have chosen not to use certain packages such as `morgan`, `cors`, `dotenv`, `body-parser`, and `cookie-parser` for the following reasons:
+In this project, we have chosen not to use certain packages such as `morgan`, `cors`, `dotenv`, `body-parser`, `serve-favicon` and `cookie-parser` for the following reasons:
 
 - **morgan**: Instead of using `morgan` for logging HTTP requests, we have implemented our own custom logging middleware to have more control over the logging format and output.
 
@@ -122,6 +122,8 @@ In this project, we have chosen not to use certain packages such as `morgan`, `c
 - **body-parser**: Instead of using `body-parser`, we use the built-in `express.json()` and `express.urlencoded()` middleware for parsing JSON and URL-encoded request bodies. This reduces the number of dependencies and leverages the built-in functionality of Express.
 
 - **cookie-parser**: Instead of using the `cookie-parser` package, we have implemented our own custom `cookieParser` middleware to parse cookies from the request headers. This allows us to have more control over the cookie parsing process and reduces the number of external dependencies.
+
+- **serve-favicon**: Serve the favicon icon without additional dependencies.
 
 By avoiding these packages, we aim to reduce the number of external dependencies, improve performance, and have more control over the application's behavior.
 

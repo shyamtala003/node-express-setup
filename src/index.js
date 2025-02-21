@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { PORT } from './configs/environment.config.js';
 import cors from './middlewares/cors.middleware.js';
 import requestLogger from './middlewares/requestLogger.middleware.js';
@@ -16,6 +18,12 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser);
 
 app.use('/api', router);
+
+app.get('/favicon.ico', (req, res) => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  res.sendFile(path.join(__dirname, '../public', 'favicon.png'));
+});
 
 app.listen(PORT, async () => {
   logger.log(`🎸 server is listening on port ${PORT} 🚀`);
