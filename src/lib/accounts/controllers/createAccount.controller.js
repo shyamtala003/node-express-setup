@@ -1,4 +1,4 @@
-import SendResponse from '../../../utils/sendResponse.js';
+import SendResponse from '../../../utils/sendResponse.util.js';
 import accountModel from '../accounts.model.js';
 
 export default async function createAccount(req, res) {

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { MONGODB_URI } from './environment.js';
-import logger from '../utils/logger.js';
+import { MONGODB_URI } from './environment.config.js';
+import logger from '../utils/logger.util.js';
 
 export default async function connectioToDB() {
   try {
