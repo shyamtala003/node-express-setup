@@ -12,6 +12,7 @@
     "staging": "node --watch --env-file=.env.staging src/index.js",
     "production": "node --env-file=.env src/index.js",
     "lint": "eslint --config eslint.config.cjs .",
+    "build-structure": "bash ./scripts/buildStructure.sh",
     "prepare": "husky install"
   },
   "lint-staged": {
