@@ -1,5 +1,6 @@
-#!/bin/bash
-# Check if prefix is provided
+#? how to use  : npm run create-structure -- user
+#* here -- "user" is collection name which is prefix for all folders and files
+
 if [ -z "$1" ]; then
   echo "Error: Please provide a prefix as an argument."
   exit 1
