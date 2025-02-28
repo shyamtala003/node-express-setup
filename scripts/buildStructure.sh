@@ -1,3 +1,4 @@
+#!/bin/bash
 #? how to use  : npm run create-structure -- user
 #* here -- "user" is collection name which is prefix for all folders and files
 
