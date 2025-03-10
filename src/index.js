@@ -8,6 +8,7 @@ import logger from './utils/logger.util.js';
 import connectioToDB from './configs/dbConnection.config.js';
 import router from './router.js';
 import cookieParser from './middlewares/cookieParser.middleware.js';
+import errorHandler from './middlewares/errorHandler.middleware.js';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser);
 
 app.use('/api', router);
 
+app.use(errorHandler);
 app.get('/favicon.ico', (req, res) => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
