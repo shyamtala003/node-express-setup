@@ -24,7 +24,9 @@ const getCallerFile = () => {
   const match = callerLine.match(/\((.*):(\d+):(\d+)\)$/);
 
   if (match) {
-    return path.basename(match[1]); // Extract just the filename
+    const filePath = match[1];
+    const lineNumber = match[2];
+    return path.basename(`${filePath}:${lineNumber}`);
   }
   return 'unknown';
 };
